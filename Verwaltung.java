@@ -13,6 +13,6 @@ public class Verwaltung {
         meineGeräte [0] = new Netzwerkgerät("Lukas-Mac", null, "192.168.1.1", "Apfle") ;
         meineGeräte [0] = new Netzwerkgerät("Alex-Mac", null, "192.168.1.1", "Apfle") ;
         meineGeräte [0] = new Netzwerkgerät("Wardemanns-Backdoor", null, "192.168.1.1", "Apfle") ;
-
+        //lukas
     }
 }  
