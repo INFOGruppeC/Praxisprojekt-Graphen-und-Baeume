@@ -1,10 +1,13 @@
+import abiturklassen.ComparableContent;
 import lombok.Data;
 
-@Data public class Zeichenkette implements ComparableContent<Zeichenkette> {
+@Data
+public class Zeichenkette implements ComparableContent<Zeichenkette> {
     String eingabe;
+
     public Zeichenkette(String pEingabe) {
         // Konstruktor
-       eingabe = pEingabe;
+        eingabe = pEingabe;
     }
 
     @Override

@@ -1,3 +1,5 @@
+import abiturklassen.Graph;
+
 // Praxisprojekt zu nicht linearen Datenstrukturen 
 
 public class Verwaltung {
@@ -20,7 +22,8 @@ public class Verwaltung {
         };
         System.out.println(devices.length);
         for (int i = 0; i < devices.length; i++) {
-            graph.addVertex(new Netzwerkgerät(devices[i][0], generateRandomMac(), "192.168.1." + (i + 1), devices[i][1]));
+            graph.addVertex(
+                    new Netzwerkgerät(devices[i][0], generateRandomMac(), "192.168.1." + (i + 1), devices[i][1]));
         }
 
         BinaryConverter converter = new BinaryConverter();

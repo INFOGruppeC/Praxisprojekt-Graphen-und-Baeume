@@ -1,3 +1,4 @@
+import abiturklassen.Vertex;
 import lombok.Data;
 
 @Data
