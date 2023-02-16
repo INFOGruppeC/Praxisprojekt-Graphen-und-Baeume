@@ -1,7 +1,18 @@
-public class Netzwerkgerät {
+import lombok.Data;
 
-    public Netzwerkgerät(String hostname, String macAdress, String ip, String vendor){
+@Data
+public class Netzwerkgerät extends Vertex {
+
+    public String hostname, macAdress, ip, vendor;
+
+    public Netzwerkgerät(String pHostname, String pMacAdress, String pIp, String pVendor) {
         // Konstruktor
+        super(pHostname);
+        hostname = pHostname;
+        macAdress = pMacAdress;
+        ip = pIp;
+        vendor = pVendor;
 
     }
+
 }
