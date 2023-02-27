@@ -1,12 +1,9 @@
-import java.util.Map;
-import stopwatch;
-import java.security.Key;
-
 import abiturklassen.BinarySearchTree;
 import abiturklassen.BinaryTree;
+import abiturklassen.List;
 
 public class BinaryConverter {
-    public void convertStringToBinary(String pEingabe) {
+    private String convertStringToBinary(String pEingabe) {
         // Konstruktor
         String binary = "";
         for (int i = 0; i < pEingabe.length(); i++) {
@@ -16,24 +13,43 @@ public class BinaryConverter {
                 binary += (val & 128) == 0 ? 0 : 1;
                 val <<= 1;
             }
-            binary += " ";
+            //binary += " ";
         }
-        System.out.println(binary);
+        return binary;
+    }
+    public String binaryToString(String pBinaer){
+        List<String> blocks = new List<String>();
+        for( int i =0; i <(int)(pBinaer.length()/8); i++){
+            String block = pBinaer.substring(i*8, (i+1)*8);
+            blocks.append(block);
+            //System.out.println("neuer Block");
+        }
+        String nonBinary= "";
+        blocks.toFirst();
 
+        while(blocks.hasAccess()) {
+            BinaryTree<String> tree = createTree();
+            String block=blocks.getContent();
+            // benutz einfach copilot du depp. dann klappt aiuch mal was
+            for (int i=0; i<block.length(); i++){
+                if (block.charAt(i) == '1'){
+                    tree=tree.getLeftTree();
+                } else if (block.charAt(i) == '0'){
+                    tree=tree.getRightTree();
+                }
+            }
+            
+            nonBinary+=tree.getContent();
+            System.out.print(tree.getContent());
+            blocks.next();
+        }
+        return nonBinary;
+
+
+        
+        
     }
     BinarySearchTree<Zeichenkette> tree = new BinarySearchTree<Zeichenkette>();
-    public void convertBinaryToString(String pEingabe) {
-        // Konstruktor
-        // split the pEingabe into 8 bit blocks which arent seperated by spaces
-        String[] blocks = pEingabe.split(" ");
-        String binary = "";
-
-       for(String block : blocks){
-              binary = block;
-              
-       }
-k
-    }
 
     
 
@@ -51,6 +67,12 @@ k
             return new BinaryTree<String>(isLeft ? "0" : "1", left, right);
         }
         
+    }
+    public static void main(String[] args) {
+        BinaryConverter bn= new BinaryConverter();
+        String lol=bn.convertStringToBinary("Man bitte, die Scheisse soll einfach mal klappen mehr will ich doch garnicht");
+        System.out.println(lol);
+        System.out.println(bn.binaryToString(lol));
     }
 
 
