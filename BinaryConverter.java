@@ -13,69 +13,63 @@ public class BinaryConverter {
                 binary += (val & 128) == 0 ? 0 : 1;
                 val <<= 1;
             }
-            //binary += " ";
+            // binary += " ";
         }
         return binary;
     }
-    public String binaryToString(String pBinaer){
+
+    public String binaryToString(String pBinaer) {
         List<String> blocks = new List<String>();
-        for( int i =0; i <(int)(pBinaer.length()/8); i++){
-            String block = pBinaer.substring(i*8, (i+1)*8);
+        for (int i = 0; i < (int) (pBinaer.length() / 8); i++) {
+            String block = pBinaer.substring(i * 8, (i + 1) * 8);
             blocks.append(block);
-            //System.out.println("neuer Block");
         }
-        String nonBinary= "";
+        String nonBinary = "";
         blocks.toFirst();
 
-        while(blocks.hasAccess()) {
+        while (blocks.hasAccess()) {
             BinaryTree<String> tree = createTree();
-            String block=blocks.getContent();
-            // benutz einfach copilot du depp. dann klappt aiuch mal was
-            for (int i=0; i<block.length(); i++){
-                if (block.charAt(i) == '1'){
-                    tree=tree.getLeftTree();
-                } else if (block.charAt(i) == '0'){
-                    tree=tree.getRightTree();
+            String block = blocks.getContent();
+            for (int i = 0; i < block.length(); i++) {
+                if (block.charAt(i) == '0') {
+                    tree = tree.getLeftTree();
+                } else if (block.charAt(i) == '1') {
+                    tree = tree.getRightTree();
                 }
             }
-            
-            nonBinary+=tree.getContent();
-            System.out.print(tree.getContent());
+
+            nonBinary += tree.getContent();
             blocks.next();
         }
         return nonBinary;
 
-
-        
-        
     }
-    BinarySearchTree<Zeichenkette> tree = new BinarySearchTree<Zeichenkette>();
 
-    
+    BinarySearchTree<Zeichenkette> tree = new BinarySearchTree<Zeichenkette>();
 
     private BinaryTree<String> createTree() {
         return new BinaryTree<String>("", createNode(true, 0, ""), createNode(false, 0, ""));
     }
 
     private BinaryTree<String> createNode(boolean isLeft, int depth, String binaryContent) {
-        if (depth == 8) {
+        if (depth == 7) {
             char c = (char) Integer.parseInt(binaryContent, 2);
-            System.out.println(String.valueOf(c));// hier liegt der Fehler bei deiner Scheiss conversion Methode
             return new BinaryTree<String>(String.valueOf(c));
-            
+
         } else {
             BinaryTree<String> left = createNode(true, depth + 1, binaryContent + "0");
             BinaryTree<String> right = createNode(false, depth + 1, binaryContent + "1");
             return new BinaryTree<String>(isLeft ? "0" : "1", left, right);
         }
-        
-    }
-    public static void main(String[] args) {
-        BinaryConverter bn= new BinaryConverter();
-        String lol=bn.convertStringToBinary("Man bitte, die Scheisse soll einfach mal klappen mehr will ich doch garnicht");
-        System.out.println(lol);
-        System.out.println(bn.binaryToString(lol));
+
     }
 
+    public static void main(String[] args) {
+        BinaryConverter bn = new BinaryConverter();
+        String lol = bn.convertStringToBinary("Man bitte, die Scheisse soll einfach mal klappen mehr will ich doch garnicht");
+        System.out.println(lol);
+        System.out.println("--------------------------------------------------");
+        System.out.println(bn.binaryToString(lol));
+    }
 
 }
