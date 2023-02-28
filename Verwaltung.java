@@ -31,6 +31,14 @@ public class Verwaltung {
 
     }
 
+    public String getAdjacencyMatrix() {
+        return getAdjacencyMatrix("");
+    }
+
+    public String getAdjacencyMatrix(String weightUnit) {
+        return "";
+    }
+
     private String generateRandomMac() {
         String mac = "";
         for (int i = 0; i < 6; i++) {
@@ -40,6 +48,8 @@ public class Verwaltung {
     }
 
     public static void main(String[] args) {
-        new Verwaltung();
+        Verwaltung verwaltung = new Verwaltung();
+        System.out.print("Das ist das Netzwerk: ");
+        System.out.println(verwaltung.getAdjacencyMatrix());
     }
 }
