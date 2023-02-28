@@ -12,19 +12,16 @@ public class Zeichenkette implements ComparableContent<Zeichenkette> {
 
     @Override
     public boolean isEqual(Zeichenkette pContent) {
-        // TODO Auto-generated method stub
         return pContent.getEingabe().equals(eingabe);
     }
 
     @Override
     public boolean isGreater(Zeichenkette pContent) {
-        // TODO Auto-generated method stub
         return pContent.getEingabe().compareTo(eingabe) > 0;
     }
 
     @Override
     public boolean isLess(Zeichenkette pContent) {
-        // TODO Auto-generated method stub
         return pContent.getEingabe().compareTo(eingabe) < 0;
     }
 }

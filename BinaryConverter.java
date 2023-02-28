@@ -1,8 +1,13 @@
-import abiturklassen.BinarySearchTree;
 import abiturklassen.BinaryTree;
 import abiturklassen.List;
 
 public class BinaryConverter {
+
+    /**
+     * Diese Methode wandelt jeden String in einen Binaren String um, welcher dann als
+     *
+     * @param pEingabe Der Test der zu Binary umgewandelt werden soll
+     */
     public String convertStringToBinary(String pEingabe) {
         // Konstruktor
         String binary = "";
@@ -18,7 +23,11 @@ public class BinaryConverter {
         return binary;
     }
 
+    public static final BinaryTree<String> TREE = createTree();
+
     public String binaryToString(String pBinaer) {
+        Stopwatch sw = new Stopwatch();
+        sw.start();
         List<String> blocks = new List<String>();
         for (int i = 0; i < (int) (pBinaer.length() / 8); i++) {
             String block = pBinaer.substring(i * 8, (i + 1) * 8);
@@ -26,32 +35,33 @@ public class BinaryConverter {
         }
         String nonBinary = "";
         blocks.toFirst();
-
+        
         while (blocks.hasAccess()) {
-            BinaryTree<String> tree = createTree();
+            BinaryTree<String> temp=TREE;
             String block = blocks.getContent();
             for (int i = 0; i < block.length(); i++) {
                 if (block.charAt(i) == '0') {
-                    tree = tree.getLeftTree();
+                    temp = temp.getLeftTree();
                 } else if (block.charAt(i) == '1') {
-                    tree = tree.getRightTree();
+                    temp = temp.getRightTree();
                 }
             }
 
-            nonBinary += tree.getContent();
+            nonBinary += temp.getContent();
             blocks.next();
         }
+        sw.stop();
+        System.out.println("[Binary -> String] Zeit: " + sw.time().toNanos() + "ns / " + sw.time().toMillis() + "ms");
         return nonBinary;
 
     }
 
-    BinarySearchTree<Zeichenkette> tree = new BinarySearchTree<Zeichenkette>();
 
-    private BinaryTree<String> createTree() {
+    private static BinaryTree<String> createTree() {
         return new BinaryTree<String>("", createNode(true, 0, ""), createNode(false, 0, ""));
     }
 
-    private BinaryTree<String> createNode(boolean isLeft, int depth, String binaryContent) {
+    private static BinaryTree<String> createNode(boolean isLeft, int depth, String binaryContent) {
         if (depth == 7) {
             char c = (char) Integer.parseInt(binaryContent, 2);
             return new BinaryTree<String>(String.valueOf(c));
@@ -71,5 +81,6 @@ public class BinaryConverter {
         System.out.println("--------------------------------------------------");
         System.out.println(bn.binaryToString(lol));
     }
+
 
 }
