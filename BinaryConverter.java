@@ -60,7 +60,9 @@ public class BinaryConverter {
     private BinaryTree<String> createNode(boolean isLeft, int depth, String binaryContent) {
         if (depth == 8) {
             char c = (char) Integer.parseInt(binaryContent, 2);
+            System.out.println(String.valueOf(c));// hier liegt der Fehler bei deiner Scheiss conversion Methode
             return new BinaryTree<String>(String.valueOf(c));
+            
         } else {
             BinaryTree<String> left = createNode(true, depth + 1, binaryContent + "0");
             BinaryTree<String> right = createNode(false, depth + 1, binaryContent + "1");
