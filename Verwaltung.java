@@ -20,7 +20,7 @@ public class Verwaltung {
                 { "Bastis-Thinkpad", "Lenovo" },
                 { "Lennarts-Surface", "Minimalsoft" }
         };
-        System.out.println("Adding " + str(devices.length) + " devices to Graph");
+        System.out.println("Adding " + devices.length + " devices to Graph");
         for (int i = 0; i < devices.length; i++) {
             graph.addVertex(
                     new Netzwerkgerät(devices[i][0], generateRandomMac(), "192.168.1." + (i + 1), devices[i][1]));

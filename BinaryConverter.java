@@ -3,7 +3,7 @@ import abiturklassen.BinaryTree;
 import abiturklassen.List;
 
 public class BinaryConverter {
-    private String convertStringToBinary(String pEingabe) {
+    public String convertStringToBinary(String pEingabe) {
         // Konstruktor
         String binary = "";
         for (int i = 0; i < pEingabe.length(); i++) {
